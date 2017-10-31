@@ -1,0 +1,22 @@
+Resultados dos experimentos
+
+Affinity Propagation:
+RMSE: 
+0.55
+
+K-Means
+
+20 clusters:
+0.71
+
+30 clusters:
+0.61
+
+40 clusters:
+0.60
+
+45 clusters:
+0.56
+
+50 clusters:
+0.57

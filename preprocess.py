@@ -41,9 +41,9 @@ def getArq( file_name ):
 
 
 if( __name__ == "__main__"):
-    users = getUsers( "treino.dat")
-    for x in range( len( users)):
-        for y in range( len( users)):
-            if( x != y):
-                print( str(x) + " "+  str(y) +" "+ str(cosine( users[x] , users[y])))
-    print( len(users))    
+    users = getArq( "treino.dat")
+    # for x in range( len( users)):
+    #     for y in range( len( users)):
+    #         if( x != y):
+    #             print( str(x) + " "+  str(y) +" "+ str(cosine( users[x] , users[y])))
+    print( len(users[0]))    
