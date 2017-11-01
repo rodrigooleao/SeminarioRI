@@ -13,6 +13,17 @@ def getNearestCentroid( users , clusters , treino ):
 
     return users[result]
 
+def getNearestCentroidId( users , clusters , treino ):
+    maior = 0
+    result = 0
+
+    for cluster in clusters:
+        c = prp.cosine( users[cluster] , treino)
+        if(c > maior):
+            maior = c
+            result = cluster
+
+    return result
 
 def calculateRMSE( real , estimated):
     result = 0
@@ -46,47 +57,42 @@ def getClusterHash( file_name):
     return clusterHash
         
 
-users = prp.getArq("treino.dat") 
-treinos = prp.getArq("teste.dat")
-
-apHash = getClusterHash("cluster.dat")
-kmHash = getClusterHash("clusterkm.dat")
-
-reals = []
-estimateds = []
-
-# print( len(apHash.keys()))
-# for treino in treinos:
-#     centroid = getNearestCentroid( users , apHash.keys() , treino)
-#     for t_rat , c_rat in list( zip( treino , centroid )):
-#         reals.append( t_rat)
-#         estimateds.append( c_rat )
-
-# print( "Affinity Propagation RMSE: " , calculateRMSE( reals , estimateds))
-
-reals = []
-estimateds = []
 
 
-for treino in treinos:
-    centroid = getNearestCentroid( users , kmHash.keys() , treino)
-    for t_rat , c_rat in list( zip( treino , centroid )):
-        reals.append( t_rat)
-        estimateds.append( c_rat )
+if( __name__ == "__main__"):
+    users = prp.getArq("treino.dat") 
+    treinos = prp.getArq("teste.dat")
+
+    apHash = getClusterHash("cluster.dat")
+    kmHash = getClusterHash("clusterkm.dat")
+
+    reals = []
+    estimateds = []
+
+    # print( len(apHash.keys()))
+    # for treino in treinos:
+    #     centroid = getNearestCentroid( users , apHash.keys() , treino)
+    #     for t_rat , c_rat in list( zip( treino , centroid )):
+    #         reals.append( t_rat)
+    #         estimateds.append( c_rat )
+
+    # print( "Affinity Propagation RMSE: " , calculateRMSE( reals , estimateds))
+
+    reals = []
+    estimateds = []
 
 
-
-print( "K-Means RMSE: " , calculateRMSE( reals , estimateds))
-
+    for treino in treinos:
+        centroid = getNearestCentroid( users , kmHash.keys() , treino)
+        for t_rat , c_rat in list( zip( treino , centroid )):
+            reals.append( t_rat)
+            estimateds.append( c_rat )
 
 
 
-        
+    print( "K-Means RMSE: " , calculateRMSE( reals , estimateds))
 
-for t in treino:
-    centroid = ObterCentroidMaisProximo()
-    for f in filmes:
-        NotaUsuarioFilme = Nota( centroid , filme)
+
 
     
     
